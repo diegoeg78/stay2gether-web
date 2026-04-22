@@ -17,15 +17,15 @@ export default function Home() {
             <span>🎈</span> Coming soon to iOS + Android
           </div>
           <h1 className="text-5xl font-black leading-[1.05] tracking-tight sm:text-7xl">
-            Travel together.
+            Your crew. Your vibe.
             <br />
             <span className="bg-gradient-to-r from-bubblegum via-grape to-candy-cyan bg-clip-text text-transparent">
-              Pay when it&apos;s real.
+              AI-picked trips you only pay for when they actually happen.
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-berry/70 sm:text-xl">
-            Plan group trips with friends, commit funds without paying upfront, vote on
-            AI-picked itineraries, and only get charged when the trip is confirmed.
+            Gather the crew, commit without paying upfront, and let AI find itineraries
+            that fit everyone&apos;s vibe and budget. Cards only charged when the trip is locked in.
           </p>
           <div className="mt-10">
             <WaitlistForm />
