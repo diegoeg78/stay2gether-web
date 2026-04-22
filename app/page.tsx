@@ -1,10 +1,104 @@
 import { WaitlistForm } from './waitlist-form';
 
+const features = [
+  {
+    emoji: '💰',
+    title: 'Pick your contribution',
+    body: 'Daily, weekly, monthly, or one-time. Even split, what-you-can, or let AI suggest based on trip cost and crew size.',
+  },
+  {
+    emoji: '🤖',
+    title: 'AI trip planner',
+    body: 'A two-minute interview — vibe, dates, budget — and Claude pitches three trips tuned to your crew and current fund.',
+  },
+  {
+    emoji: '🗳️',
+    title: 'Group vote',
+    body: 'Everyone picks their favorite. Real-time bars, winner locks in when the last vote lands.',
+  },
+  {
+    emoji: '💬',
+    title: 'Crew chat',
+    body: 'Built-in group chat for the planning chaos. Paste a link, get a preview card. No more scattered Slack DMs.',
+  },
+  {
+    emoji: '🎁',
+    title: 'Gift a payment',
+    body: "Cover a friend's contribution for a birthday, a bad month, or just because. Credits their tally, shows up in the feed.",
+  },
+  {
+    emoji: '🏆',
+    title: 'Leaderboard + streaks',
+    body: 'See who pulled their weight. Consecutive-day streaks light up with 🔥 to keep the crew motivated.',
+  },
+  {
+    emoji: '⏰',
+    title: 'Countdown to takeoff',
+    body: 'Live countdown once the trip is locked. One tap opens Expedia, Booking, Kayak, or Skyscanner.',
+  },
+  {
+    emoji: '🎟️',
+    title: 'AI promo hunter',
+    body: 'Claude sniffs out active discount codes for your destination. Tap to copy, tap to open the vendor.',
+  },
+  {
+    emoji: '⚖️',
+    title: 'Surplus + shortfall settle',
+    body: 'Fund bigger than the trip? Rollover, refund, or upgrade. Short? Even top-up, gift route, or cancel — your call.',
+  },
+];
+
+const steps = [
+  { num: '01', emoji: '👯', title: 'Form a crew', body: 'Create a group, give it an emoji and a goal, share a one-tap invite link.' },
+  { num: '02', emoji: '🏦', title: 'Save together', body: 'Each member sets their own cadence. Fund grows as a virtual balance — no custody, no escrow.' },
+  { num: '03', emoji: '🧠', title: 'AI picks trips', body: 'When you\u2019re ready, the planner pitches three options that fit the fund and the vibe.' },
+  { num: '04', emoji: '💳', title: 'Book when ready', body: 'Vote, lock in, each card is charged its share once. Hand off to the booking site you already trust.' },
+];
+
+const faqs = [
+  {
+    q: 'Do you hold our money?',
+    a: "No. Stay2gether is a ledger — we track what each person has pledged, but the cash stays on your card until the crew locks in a trip. At book time, each member\u2019s card is charged their share, once.",
+  },
+  {
+    q: 'What if someone flakes?',
+    a: 'Their share doesn\u2019t get charged, and the group sees it instantly. You can cover them (gift a payment), split the shortfall across the crew, or cancel. No drama, no chasing Venmos.',
+  },
+  {
+    q: 'Where does the booking happen?',
+    a: 'Wherever you want. We hand you off to Expedia, Booking.com, Kayak, Skyscanner — whichever deal is best the day you book. We just make sure the crew has the money ready.',
+  },
+  {
+    q: 'Is my card charged every week?',
+    a: "Only at booking. Scheduled contributions are virtual — they build a pledge balance. You\u2019re charged once, for your share, when the crew locks in a trip.",
+  },
+  {
+    q: 'How does the AI know what we want?',
+    a: "A 2-minute group interview: dream vibe, travel window, hard-nos, budget ceiling. Claude then picks three trips that match the crew\u2019s answers and current fund balance.",
+  },
+];
+
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* Nav */}
+      <nav className="sticky top-0 z-50 border-b border-border/40 bg-bg/70 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-2">
+            <span className="text-xl">✈️</span>
+            <span className="text-lg font-black tracking-tight">Stay2gether</span>
+          </div>
+          <div className="hidden items-center gap-8 text-sm font-semibold text-ink-muted sm:flex">
+            <a href="#features" className="hover:text-ink">Features</a>
+            <a href="#how" className="hover:text-ink">How it works</a>
+            <a href="#faq" className="hover:text-ink">FAQ</a>
+            <a href="#waitlist" className="rounded-full bg-lime px-4 py-1.5 text-bg transition hover:brightness-110">Join waitlist</a>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero */}
-      <section className="relative overflow-hidden px-6 pt-24 pb-20 sm:pt-32 sm:pb-28">
+      <section className="relative overflow-hidden px-6 pt-24 pb-28 sm:pt-32 sm:pb-32">
         <div
           className="absolute inset-0 -z-10 opacity-60"
           style={{
@@ -35,42 +129,191 @@ export default function Home() {
             A group savings club for travel. Schedule contributions, watch the fund grow,
             and see exactly which trips your crew can afford right now.
           </p>
-          <div className="mt-10">
+          <div id="waitlist" className="mt-10">
             <WaitlistForm />
           </div>
+          <p className="mt-4 text-xs text-ink-muted">No spam. One email when we launch.</p>
+        </div>
+      </section>
+
+      {/* Stats band */}
+      <section className="border-y border-border/60 bg-surface/40 px-6 py-10">
+        <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 text-center sm:grid-cols-4">
+          {[
+            { n: '2 min', l: 'to plan a trip' },
+            { n: '$0', l: 'held in custody' },
+            { n: '1', l: 'charge per member' },
+            { n: '∞', l: 'crews per account' },
+          ].map((s) => (
+            <div key={s.l}>
+              <div className="text-3xl font-black text-lime sm:text-4xl">{s.n}</div>
+              <div className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-muted">{s.l}</div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* How it works */}
-      <section className="px-6 py-20">
+      <section id="how" className="px-6 py-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-center text-3xl font-black sm:text-4xl">How it works</h2>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { emoji: '👯', title: 'Form a crew', body: 'Create a group and invite friends with a code.' },
-              { emoji: '🏦', title: 'Save as a group', body: 'Daily, weekly, or monthly deposits into one fund.' },
-              { emoji: '🤖', title: 'AI picks trips', body: 'Itineraries tuned to your crew&rsquo;s vibe and current balance.' },
-              { emoji: '✈️', title: 'Book externally', body: 'Hand off to Expedia, Booking, Kayak — your money, your choice.' },
-            ].map((step, i) => (
+          <div className="text-center">
+            <div className="text-xs font-bold uppercase tracking-[0.2em] text-grape">How it works</div>
+            <h2 className="mt-3 text-3xl font-black sm:text-4xl">Save as a group. Book as a group.</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-ink-muted">
+              Four steps from &ldquo;we should travel together&rdquo; to &ldquo;we&apos;re on the plane.&rdquo;
+            </p>
+          </div>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {steps.map((step) => (
               <div
-                key={i}
+                key={step.num}
                 className="group relative overflow-hidden rounded-3xl border border-border bg-surface p-6 transition duration-200 ease-out hover:-translate-y-1 hover:border-lime/40 hover:shadow-[0_0_40px_-12px_#CCFF00]"
               >
                 <span
                   aria-hidden
                   className="pointer-events-none absolute inset-x-0 top-0 h-1/3 rounded-t-3xl bg-gradient-to-b from-grape/10 to-transparent"
                 />
-                <div className="text-4xl">{step.emoji}</div>
+                <div className="flex items-center justify-between">
+                  <div className="text-4xl">{step.emoji}</div>
+                  <div className="text-xs font-black text-ink-muted">{step.num}</div>
+                </div>
                 <div className="mt-4 text-lg font-bold text-ink">{step.title}</div>
-                <p className="mt-2 text-sm text-ink-muted" dangerouslySetInnerHTML={{ __html: step.body }} />
+                <p className="mt-2 text-sm text-ink-muted">{step.body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* Features */}
+      <section id="features" className="px-6 py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center">
+            <div className="text-xs font-bold uppercase tracking-[0.2em] text-lime">Everything in the app</div>
+            <h2 className="mt-3 text-3xl font-black sm:text-4xl">Built for the chaos of group travel.</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-ink-muted">
+              From the first &ldquo;we should go somewhere&rdquo; to the countdown on the airport floor.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((f) => (
+              <div
+                key={f.title}
+                className="rounded-2xl border border-border bg-surface p-6 transition hover:-translate-y-0.5 hover:border-grape/50 hover:shadow-[0_0_30px_-10px_#A855F7]"
+              >
+                <div className="text-3xl">{f.emoji}</div>
+                <div className="mt-3 text-base font-bold text-ink">{f.title}</div>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{f.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mock screenshot / dashboard preview */}
+      <section className="px-6 py-24">
+        <div className="mx-auto max-w-5xl">
+          <div className="text-center">
+            <div className="text-xs font-bold uppercase tracking-[0.2em] text-cyan">Live from the app</div>
+            <h2 className="mt-3 text-3xl font-black sm:text-4xl">Your crew&apos;s fund, at a glance.</h2>
+          </div>
+
+          <div className="mt-14 grid gap-6 lg:grid-cols-2">
+            {/* Group card mock */}
+            <div className="rounded-3xl border border-border bg-surface p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-3xl">🏝️</div>
+                  <div className="mt-2 text-xl font-black">Tulum Crew</div>
+                  <div className="text-xs text-ink-muted">📍 Mexico · 6 members</div>
+                </div>
+                <div className="rounded-full bg-lime/15 px-3 py-1 text-xs font-bold text-lime">on track</div>
+              </div>
+              <div className="mt-6 flex items-end justify-between">
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-ink-muted">Committed</div>
+                  <div className="text-3xl font-black text-grape">$3,420</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-xs font-bold uppercase tracking-wider text-ink-muted">Goal</div>
+                  <div className="text-3xl font-black">$5,400</div>
+                </div>
+              </div>
+              <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-border">
+                <div className="h-full w-[63%] bg-gradient-to-r from-lime to-cyan" />
+              </div>
+              <div className="mt-2 text-xs font-bold text-ink-muted">63% of fund goal · pay when your crew books ✈️</div>
+            </div>
+
+            {/* Leaderboard mock */}
+            <div className="rounded-3xl border border-border bg-surface p-6">
+              <div className="text-sm font-black uppercase tracking-wider text-ink-muted">🏆 Leaderboard</div>
+              <div className="mt-4 space-y-2">
+                {[
+                  { r: 1, n: 'Maya', s: 14, a: 820 },
+                  { r: 2, n: 'Diego', s: 9, a: 710 },
+                  { r: 3, n: 'Jordan', s: 12, a: 640 },
+                  { r: 4, n: 'Sam', s: 3, a: 520 },
+                  { r: 5, n: 'Priya', s: 0, a: 380 },
+                ].map((row) => (
+                  <div key={row.r} className="flex items-center gap-3 rounded-xl border border-border bg-surface-hi px-4 py-2.5">
+                    <div className="w-6 text-sm font-black text-lime">#{row.r}</div>
+                    <div className="flex-1 text-sm font-bold">{row.n}</div>
+                    {row.s > 1 && <div className="text-xs font-black text-lime">🔥 {row.s}</div>}
+                    <div className="text-sm font-black">${row.a}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Poll mock */}
+            <div className="rounded-3xl border border-border bg-surface p-6">
+              <div className="text-sm font-black uppercase tracking-wider text-ink-muted">🗳️ Group vote · 4/6 in</div>
+              <div className="mt-4 space-y-3">
+                {[
+                  { e: '🏝️', t: 'Tulum beach week', pct: 50, v: 3 },
+                  { e: '🗼', t: 'Tokyo neon run', pct: 33, v: 2 },
+                  { e: '🏔️', t: 'Patagonia trek', pct: 17, v: 1 },
+                ].map((p) => (
+                  <div key={p.t}>
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="font-bold">{p.e} {p.t}</div>
+                      <div className="text-ink-muted">{p.v} vote{p.v !== 1 && 's'}</div>
+                    </div>
+                    <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-border">
+                      <div className="h-full bg-gradient-to-r from-grape to-cyan" style={{ width: `${p.pct}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Promo mock */}
+            <div className="rounded-3xl border border-border bg-surface p-6">
+              <div className="text-sm font-black uppercase tracking-wider text-ink-muted">🎟️ AI promo hunter</div>
+              <div className="mt-4 rounded-2xl border border-border bg-surface-hi p-5">
+                <div className="flex items-center justify-between">
+                  <div className="text-xs font-black uppercase tracking-wider text-ink-muted">Booking.com</div>
+                  <div className="rounded-full bg-lime/20 px-2 py-0.5 text-[10px] font-black uppercase">High</div>
+                </div>
+                <div className="mt-2 text-2xl font-black tracking-[0.2em] text-lime">TULUM15</div>
+                <div className="mt-1 text-sm text-ink-muted">15% off beachfront stays · expires in 4 days</div>
+              </div>
+              <div className="mt-3 rounded-2xl border border-border bg-surface-hi p-5">
+                <div className="flex items-center justify-between">
+                  <div className="text-xs font-black uppercase tracking-wider text-ink-muted">Expedia</div>
+                  <div className="rounded-full bg-cyan/20 px-2 py-0.5 text-[10px] font-black uppercase">Medium</div>
+                </div>
+                <div className="mt-2 text-2xl font-black tracking-[0.2em] text-lime">GROUP2026</div>
+                <div className="mt-1 text-sm text-ink-muted">$75 off bundles of 4+ travelers</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Trust strip */}
-      <section className="px-6 py-16">
+      <section className="px-6 py-20">
         <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl border border-lime/30 bg-surface p-10 text-center shadow-[0_0_80px_-20px_#A855F7] sm:p-14">
           <div
             aria-hidden
@@ -85,15 +328,67 @@ export default function Home() {
             Your money. Your fund. Your call.
           </h3>
           <p className="relative mx-auto mt-3 max-w-xl text-ink-muted">
-            Stay2gether is a savings club — we don&apos;t process bookings. Contributions
-            stack in your group fund until the crew decides where to go, then you book
-            externally on the sites you already trust.
+            Stay2gether is a savings club — we don&apos;t process bookings and we never hold your cash.
+            Your card stays with you until the crew locks in a trip. One charge, one trip, done.
           </p>
         </div>
       </section>
 
-      <footer className="px-6 py-12 text-center text-sm text-ink-muted">
-        <p>© {new Date().getFullYear()} Stay2gether</p>
+      {/* FAQ */}
+      <section id="faq" className="px-6 py-24">
+        <div className="mx-auto max-w-3xl">
+          <div className="text-center">
+            <div className="text-xs font-bold uppercase tracking-[0.2em] text-magenta">FAQ</div>
+            <h2 className="mt-3 text-3xl font-black sm:text-4xl">Questions people ask.</h2>
+          </div>
+          <div className="mt-12 space-y-4">
+            {faqs.map((f) => (
+              <details key={f.q} className="group rounded-2xl border border-border bg-surface p-6 transition hover:border-grape/40">
+                <summary className="flex cursor-pointer items-center justify-between text-base font-bold text-ink">
+                  {f.q}
+                  <span className="text-lime transition group-open:rotate-45">＋</span>
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="px-6 py-24">
+        <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl border border-grape/40 bg-surface p-12 text-center sm:p-16">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 opacity-50"
+            style={{
+              background:
+                'radial-gradient(circle at 30% 50%, #A855F7 0%, transparent 40%), radial-gradient(circle at 80% 50%, #CCFF00 0%, transparent 40%)',
+            }}
+          />
+          <h3 className="relative text-3xl font-black sm:text-5xl">Ready to travel together?</h3>
+          <p className="relative mx-auto mt-4 max-w-xl text-ink-muted">
+            We&apos;re opening the waitlist ahead of launch. Early crews get priority access and a lifetime discount.
+          </p>
+          <div className="relative mt-8">
+            <WaitlistForm />
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-border/60 px-6 py-12">
+        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 text-sm text-ink-muted sm:flex-row">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">✈️</span>
+            <span className="font-black text-ink">Stay2gether</span>
+          </div>
+          <div className="flex gap-6">
+            <a href="#features" className="hover:text-ink">Features</a>
+            <a href="#how" className="hover:text-ink">How it works</a>
+            <a href="#faq" className="hover:text-ink">FAQ</a>
+          </div>
+          <p>© {new Date().getFullYear()} Stay2gether</p>
+        </div>
       </footer>
     </main>
   );
