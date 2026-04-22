@@ -25,7 +25,7 @@ export function WaitlistForm() {
   if (status === 'success') {
     return (
       <div className="mx-auto max-w-md rounded-2xl border-2 border-mint bg-mint/10 px-6 py-5 text-center font-semibold text-berry">
-        🎉 You&apos;re on the list. We&apos;ll email you when Gogether launches.
+        🎉 You&apos;re on the list. We&apos;ll email you when Stay2gether launches.
       </div>
     );
   }

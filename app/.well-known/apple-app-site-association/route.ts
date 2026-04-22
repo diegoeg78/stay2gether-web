@@ -8,7 +8,7 @@ export async function GET() {
       apps: [],
       details: [
         {
-          appID: 'TEAMID.com.gogether.app',
+          appID: 'TEAMID.com.stay2gether.app',
           paths: ['/join/*'],
         },
       ],

@@ -83,7 +83,7 @@ export default function Home() {
       </section>
 
       <footer className="px-6 py-12 text-center text-sm text-berry/50">
-        <p>© {new Date().getFullYear()} Gogether</p>
+        <p>© {new Date().getFullYear()} Stay2gether</p>
       </footer>
     </main>
   );
